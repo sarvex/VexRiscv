@@ -12,13 +12,13 @@ def local(cmd):
 	system(cmd)
 
 def remote(cmd):
-	cmd = 'gcloud compute --project "{}" ssh --zone "{}" "{}" -- "{}"'.format(project, zone, instance, cmd)
+	cmd = f'gcloud compute --project "{project}" ssh --zone "{zone}" "{instance}" -- "{cmd}"'
 	print(cmd)
 	system(cmd)
 
 def localToRemote(source, target):
 	remote("rm -rf target")
-	cmd = 'gcloud compute --project "{}" scp --zone "{}" {} {}:{}'.format(project, zone, source, instance, target)
+	cmd = f'gcloud compute --project "{project}" scp --zone "{zone}" {source} {instance}:{target}'
 	print(cmd)
 	system(cmd)
 
